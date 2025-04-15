@@ -2,7 +2,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API = "http://localhost:5000";
+const API =
+  process.env.NEXT_SERVER_CON || "https://seatbookingserver.onrender.com";
 
 export const signupUser = createAsyncThunk(
   "signupUser",
