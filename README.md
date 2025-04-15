@@ -1,40 +1,153 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Seat Booking Application
+
+A full-stack Next.js application for booking train seats with specific booking rules and real-time seat availability.
+
+## Features
+
+- **User Authentication**
+
+  - Sign up with name, email, and password
+  - Login with email and password
+  - Protected routes for authenticated users
+
+- **Seat Booking System**
+
+  - Visual representation of 80 seats (7 seats per row, last row with 3 seats)
+  - Real-time seat availability status
+  - Maximum 7 seats per booking
+  - Smart seat allocation:
+    - Priority booking in the same row
+    - Nearby seat allocation if same row is unavailable
+  - Special handling for the last row (3 seats only)
+
+- **Interactive UI**
+  - Responsive design for all screen sizes
+  - Loading states and animations
+  - Color-coded seat status
+  - Real-time booking updates
+
+## Tech Stack
+
+### Frontend
+
+- Next.js 15.3.0
+- React 19.0.0
+- Redux Toolkit for state management
+- TailwindCSS for styling
+- Axios for API calls
+
+### Backend
+
+- Node.js with Express
+- PostgreSQL with Sequelize ORM
+- JWT for authentication
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js 18+ installed
+- PostgreSQL database server running
+- Git (optional)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Setup
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+1. Clone the repository:
+   \`\`\`bash
+   git clone <repository-url>
+   cd sde-1
+   \`\`\`
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+2. Frontend Setup (client folder):
+   \`\`\`bash
+   cd client
+   npm install
+   \`\`\`
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+Create a .env file in the client directory:
+\`\`\`env
+NEXT_PUBLIC_SERVER_CON=http://localhost:5000
+\`\`\`
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Backend Setup (server folder):
+   \`\`\`bash
+   cd ../server
+   npm install
+   \`\`\`
 
-## Learn More
+Create a .env file in the server directory:
+\`\`\`env
+PORT=5000
+DB_HOST=your_database_host
+DB_USER=your_database_user
+DB_PASSWORD=your_database_password
+DB_NAME=your_database_name
+JWT_SECRET=your_jwt_secret
+\`\`\`
 
-To learn more about Next.js, take a look at the following resources:
+### Running the Application
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+1. Start the backend server:
+   \`\`\`bash
+   cd server
+   npm run dev
+   \`\`\`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Start the frontend development server:
+   \`\`\`bash
+   cd client
+   npm run dev
+   \`\`\`
 
-## Deploy on Vercel
+The application will be available at [http://localhost:3000](http://localhost:3000)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Usage
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+1. **Authentication**
+
+   - Create a new account using the Sign Up page
+   - Login with your credentials
+   - You'll be automatically redirected to the booking page
+
+2. **Booking Seats**
+
+   - Enter the number of seats you want to book (max 7)
+   - Click "Book" to automatically allocate seats
+   - The system will try to book seats in the same row
+   - If not possible, it will allocate nearby seats
+   - Last row is limited to 3 seats only
+
+3. **Seat Legend**
+   - Green: Available seats
+   - Blue: Selected seats
+   - Yellow: Last row seats (limited to 3)
+
+## Deployment
+
+### Frontend
+
+The frontend can be deployed on Vercel:
+
+1. Connect your GitHub repository to Vercel
+2. Configure environment variables
+3. Deploy
+
+### Backend
+
+The backend can be deployed on any Node.js hosting platform:
+
+1. Set up your PostgreSQL database
+2. Configure environment variables
+3. Deploy the Node.js application
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## License
+
+This project is licensed under the MIT License.
